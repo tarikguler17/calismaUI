@@ -2,6 +2,7 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -9,12 +10,22 @@ import java.security.Key;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.open;
+import static org.testng.Assert.assertEquals;
+
 
 public class selenideTest {
     @Test
     public void tradingviewTest() throws InterruptedException {
         Configuration.browser = "Chrome";
-        Configuration.startMaximized = true;
+
+        //Configuration.startMaximized = true;
+        Configuration.headless = true;
+        //Configuration.browserCapabilities.setCapability("--disable-notifications",true);
+        //Configuration.browserSize = "1920x1080";
+        //Configuration.browser = "chrome-headless";
+
+        //Configuration.browserVersion = "89.0.4389.82";
+        //Configuration.screenshots = false;
 
         open("https://www.tradingview.com");
 
@@ -29,7 +40,9 @@ public class selenideTest {
         //$(By.xpath("//*[@class='tv-header-search__input js-header-search__input']")).setValue("DOGEUSDT").sendKeys(Keys.ENTER);
         //$(By.xpath("//*[@class='button-1iktpaT1 size-m-2G7L7Qat intent-primary-1-IOYcbg appearance-stroke-12lxiUSM noOutline-d9Yp4qvi with-icon-yumghDr-']")).click();*/
 
-        $("a.tv-header__link.tv-header__link--signin").click();
+        System.out.println($(".tv-header__area--right").innerHtml());
+        $(".tv-header__link--signin").click();
+
         $(".tv-signin-dialog__social.tv-signin-dialog__toggle-email").click();
         $("input[id*=email-signin__user-name-input]").setValue("denemebootcamp");
         Thread.sleep(1000);
@@ -40,6 +53,7 @@ public class selenideTest {
         Thread.sleep(1000);
         $("a[class*=button-1iktpaT1]").click();
         Thread.sleep(5000);
-
+        boolean a = true;
+        assertEquals(a,true);
     }
 }
